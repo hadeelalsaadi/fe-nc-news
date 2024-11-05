@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { ArticleCard } from "./ArticleCard"
 import { fetchAllArticles } from "../api"
 
+
 export const ArticlesList =()=>{
 const [articles,setArticles]= useState([])
 const [isLoading, setIsLoading]=useState(true)
@@ -11,7 +12,6 @@ useEffect(()=>{
     setIsError(false)
     fetchAllArticles().then((articles)=>{
         setArticles(articles)
-        console.log(articles)
         
         setIsLoading(false)
 
@@ -27,14 +27,14 @@ if (isLoading) {
   }
 
   return (
-    <section>
+    <section >
         <h2>NEWS</h2>
         <ul>
             {articles.map((article)=>{
                 return (
-                    <div key={article.article_id}>
+                   
                     <ArticleCard article= {article}/>
-                    </div>
+                    
                 )
             })}
         </ul>

@@ -1,16 +1,32 @@
 .fancy{
     display: flex;
-    background: rgba(240, 184, 184, 0.6);
+    background: #e6d4d4;
     border: 0;
-    margin: 5px;
+    margin-left: 30px;
+    margin-bottom: 5px;
     padding: 5px;
     border-radius: 0;
     width: 50%;
     box-shadow: none;
     flex-wrap: wrap;
+    
    
 }
 .responsive-img{
     width: 100%;
     height: auto;
 }
+
+.commentCard{
+    background:rgb(226, 192, 192);
+    padding: 20px;
+    margin:10px;
+    border-radius: 20px;
+}
+
+header{
+    background: rgb(230, 149, 149);
+    width: 100%;
+    text-align: center;
+}
+h5{margin-left: 50px;}
