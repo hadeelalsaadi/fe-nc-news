@@ -1,9 +1,30 @@
-import { useState,useEffect } from "react"
-import { getArticleById } from "../api"
-export const MakeVote = ({setVotes})=>{
+import { incrementVotes } from "../api"
+import { useState } from "react"
+
+export const MakeVote = (props)=>{
+    const {votes,setVotes , article_id}= props
+    
+    
+    const [Error, setError]=useState(null)
    
    
- return <button></button>
+ return <button onClick={()=>{
+      setVotes((currVotes) => {
+       return currVotes + 1;
+      })
+       console.log(votes)
+    incrementVotes(article_id,1).then(({votes})=>{
+        setVotes(votes)
+        setError(false)
+       
+    }).catch((err)=>{
+        setVotes(curr=>curr-1)
+        setError(err)
+
+    })
+
+
+ }} disabled= {Error===false} >{Error === false? "liked" : "like"}</button>
 
 
 
