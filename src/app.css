@@ -1,4 +1,5 @@
 .fancy{
+    display: flex;
     background: rgba(240, 184, 184, 0.6);
     border: 0;
     margin: 5px;
@@ -6,4 +7,10 @@
     border-radius: 0;
     width: 50%;
     box-shadow: none;
+    flex-wrap: wrap;
+   
+}
+.responsive-img{
+    width: 100%;
+    height: auto;
 }
