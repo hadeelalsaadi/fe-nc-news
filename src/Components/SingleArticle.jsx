@@ -7,6 +7,7 @@ import { CommentsList } from "./CommentsList"
 import { MakeVote } from "./MakeVote"
 
 
+
 export const SingleArticle= ()=>{
     const {article_id}= useParams()
     const [article,setArticle]= useState([])
@@ -47,9 +48,8 @@ if (isLoading) {
 
 
       <MakeVote setVotes={setVotes} article_id={article_id} votes= {votes}/>
-     
        <CommentsList article_id= {article_id}/>
-       <h4>Add a comment</h4>
+       
 
        
 
