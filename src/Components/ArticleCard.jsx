@@ -11,8 +11,8 @@ export const ArticleCard = (props)=>{
             <h4>by: {article.author}</h4>
            
             <img src={article.article_img_url} alt={`image of ${article.title}`} className="responsive-img"/>
-            <h5>{article.votes} likes</h5>
-             <h5>{article.comment_count} comments </h5>
+            <h5 id="likes">{article.votes} likes</h5>
+             <h5 id="comments">{article.comment_count} comments </h5>
         </FancyBox>
     )
 }

@@ -32,3 +32,16 @@ export const postNewComment=(article_id,newComment, username)=>{
     })
 
 }
+
+export const deleteComent= (comment_id)=>{
+   return api.delete(`/comments/${comment_id}`).then(({data})=>{
+    return data.msg
+   })
+}
+export const fetchAllTopics =()=>{
+    return api.get(`/topics`).then(({data})=>{
+       
+        return data.topics
+    })
+    }
+    

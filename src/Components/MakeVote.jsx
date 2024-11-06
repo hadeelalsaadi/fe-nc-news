@@ -3,7 +3,7 @@ import { useState } from "react"
 
 export const MakeVote = (props)=>{
     const {setVotes , article_id}= props
-    const [Error, setError]=useState(null)
+    const [error, setError]=useState(null)
    
    
  return <button onClick={()=>{  
@@ -18,7 +18,7 @@ export const MakeVote = (props)=>{
     })
 
 
- }} disabled= {Error===false} >{Error === false? "liked" : "like"}</button>
+ }} disabled= {error===false} >{error === false? "liked" : "like"}</button>
 
 
 
