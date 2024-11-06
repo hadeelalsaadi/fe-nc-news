@@ -19,9 +19,8 @@ export const getComments= (article_id)=>{
     })
 }
 
-export const incrementVotes= (article_id,votes)=>{
-    return api.patch(`articles/${article_id}`,{inc_Votes:votes}).then(({data})=>{
-        console.log(data.article.votes)
+export const incrementVotes= (article_id)=>{
+    return api.patch(`articles/${article_id}`,{inc_votes: 1}).then(({data})=>{
         return data.article.votes
     })
 

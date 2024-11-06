@@ -21,6 +21,8 @@ useEffect(()=>{
         setArticle(article)
         setIsLoading(false)
         setIsError(false)
+        setVotes(article.votes)
+        
     }).catch((err)=>{
         setIsError(true)
     })
@@ -41,11 +43,11 @@ if (isLoading) {
       <img src={article.article_img_url} alt={`image of ${article.title}`} />
        <p>{article.body}</p>
        <h4>{article.comment_count} comments </h4>
-       <h4>{article.votes+votes} likes</h4>
+       <h4>{votes} likes</h4>
 
 
       <MakeVote setVotes={setVotes} article_id={article_id} votes= {votes}/>
-
+     
        <CommentsList article_id= {article_id}/>
        <h4>Add a comment</h4>
 
