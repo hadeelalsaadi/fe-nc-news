@@ -3,10 +3,12 @@ import {useParams}from 'react-router-dom'
 import { useEffect, useState } from "react"
 import { getComments } from '../api'
 import { CommentAdder } from "./CommentAdder"
+import { CommentToDelete } from './CommentToDelete'
 
 const username= "cooljmessy"
 
-export const CommentsList =()=>{
+export const CommentsList =(props)=>{
+    const {comment_count}= props
     const {article_id}= useParams()
 const [comments,setComments]= useState([])
 const [isLoading, setIsLoading]=useState(true)
@@ -32,9 +34,15 @@ function newCommentsList(newComment){
     setComments((currComments)=>{
         return [newComment, ...currComments]
     })
-
-    
 }
+
+function filterComments (comment_id){
+    setComments((currComments)=>{
+       return currComments.filter((currComment)=> currComment.comment_id!==comment_id)
+
+   })
+}
+
 useEffect(()=>{
  fetchAllComments()
 },[])
@@ -52,10 +60,11 @@ if (isLoading) {
             {comments.map((comment)=>{
                 return (
                     <section className='commentCard' key= {comment.comment_id}>
-                    <h4>{comment.author} :</h4>
+                   <h4>{comment.author} :</h4>
                    <h4>{comment.body}</h4> 
                    <h5>{comment.votes} likes</h5>
                    <button>like</button>
+                   <CommentToDelete  comment_id= {comment.comment_id} filterComments={filterComments} />
                    </section>
 
                 )

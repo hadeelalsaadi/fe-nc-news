@@ -4,16 +4,23 @@ import { postNewComment} from '../api'
 
 export const CommentAdder = (props)=>{
     const {article_id, username,newCommentsList}= props
-
     const [newComment,setNewComment]=useState("")
+    const [isPosting, setIsPosting]=useState(false)
+
 
     return (
+        <>
+        {isPosting && <h4>is posting the comment...</h4>}
         <form className="commentCard  commentAdder"
         onSubmit={(event)=>{
             event.preventDefault();
+            setIsPosting(true)
             postNewComment(article_id, newComment,username).then((newComment)=>{
                 newCommentsList(newComment)
+                setIsPosting(false)
                 setNewComment("")
+            }).catch((err)=>{
+                setIsPosting(false)
             })
             
 
@@ -27,6 +34,7 @@ export const CommentAdder = (props)=>{
             <button>Add</button>
 
         </form>
+        </>
     )
 
 }

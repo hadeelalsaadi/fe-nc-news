@@ -4,7 +4,8 @@ const Header = ()=>{
         <header>
         <h1> NC NEWS</h1>
         <nav>
-          <Link to='/articles'>Home</Link>
+          <div className="nav"><Link to='/articles'>Home</Link></div>
+         <div className="nav"> <Link to='/topics'>Topics</Link> </div>
         </nav>
         </header>
     )

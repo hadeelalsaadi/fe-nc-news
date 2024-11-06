@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import {useParams}from 'react-router-dom'
 import { getArticleById } from "../api"
-import { Link } from "react-router-dom"
 import '../app.css'
 import { CommentsList } from "./CommentsList"
 import { MakeVote } from "./MakeVote"
@@ -14,6 +13,7 @@ export const SingleArticle= ()=>{
     const [isLoading, setIsLoading]=useState(true)
     const [isError, setIsError]=useState(null)
     const [votes, setVotes]= useState(0)
+  
    
 useEffect(()=>{
     setIsLoading(true)
@@ -23,6 +23,7 @@ useEffect(()=>{
         setIsLoading(false)
         setIsError(false)
         setVotes(article.votes)
+        
         
     }).catch((err)=>{
         setIsError(true)
@@ -43,16 +44,13 @@ if (isLoading) {
       <h2>{article.title}</h2>
       <img src={article.article_img_url} alt={`image of ${article.title}`} />
        <p>{article.body}</p>
-       <h4>{article.comment_count} comments </h4>
-       <h4>{votes} likes</h4>
-
-
+       
+        <p><b>{article.comment_count} comments </b></p>
+        <p><b>{votes} likes</b></p>
+       
+       
       <MakeVote setVotes={setVotes} article_id={article_id} votes= {votes}/>
-       <CommentsList article_id= {article_id}/>
-       
-
-       
-
+     <CommentsList article_id= {article_id}/>
     </section>
   )
 
