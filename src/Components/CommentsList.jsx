@@ -2,13 +2,21 @@
 import {useParams}from 'react-router-dom'
 import { useEffect, useState } from "react"
 import { getComments } from '../api'
+import { CommentAdder } from "./CommentAdder"
+
+const username= "cooljmessy"
 
 export const CommentsList =()=>{
     const {article_id}= useParams()
 const [comments,setComments]= useState([])
 const [isLoading, setIsLoading]=useState(true)
 const [isError, setIsError]=useState(null)
-useEffect(()=>{
+
+
+
+
+
+function fetchAllComments(){
     setIsLoading(true)
     setIsError(false)
     getComments(article_id).then((comments)=>{
@@ -18,6 +26,17 @@ useEffect(()=>{
     }).catch((err)=>{
         setIsError(true)
     })
+
+}
+function newCommentsList(newComment){
+    setComments((currComments)=>{
+        return [newComment, ...currComments]
+    })
+
+    
+}
+useEffect(()=>{
+ fetchAllComments()
 },[])
 if(isError){
     return <p>404..Not found</p>
@@ -28,7 +47,7 @@ if (isLoading) {
 
   return (
     <section>
-       
+       <CommentAdder  article_id={article_id} username= {username} newCommentsList={newCommentsList}/>
         <ul>
             {comments.map((comment)=>{
                 return (
@@ -42,6 +61,7 @@ if (isLoading) {
                 )
             })}
         </ul>
+        
     </section>
   )
 

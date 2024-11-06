@@ -25,3 +25,10 @@ export const incrementVotes= (article_id)=>{
     })
 
 }
+export const postNewComment=(article_id,newComment, username)=>{
+    return api.post(`articles/${article_id}/comments`,{username: username, body: newComment} ).then(({data})=>{
+        return data.newComment
+
+    })
+
+}

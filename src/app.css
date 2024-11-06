@@ -30,3 +30,11 @@ header{
     text-align: center;
 }
 h5{margin-left: 50px;}
+
+
+.commentAdder{
+    
+  align-items:center;
+  margin: 20px;
+  margin-left: 50px;
+}
