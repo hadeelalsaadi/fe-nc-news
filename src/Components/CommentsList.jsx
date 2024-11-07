@@ -7,8 +7,8 @@ import { CommentToDelete } from './CommentToDelete'
 
 const username= "cooljmessy"
 
-export const CommentsList =(props)=>{
-    const {comment_count}= props
+export const CommentsList =()=>{
+    
     const {article_id}= useParams()
 const [comments,setComments]= useState([])
 const [isLoading, setIsLoading]=useState(true)
@@ -32,7 +32,7 @@ function fetchAllComments(){
 }
 function newCommentsList(newComment){
     setComments((currComments)=>{
-        return [newComment, ...currComments]
+        return [ newComment,...currComments]
     })
 }
 

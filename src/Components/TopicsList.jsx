@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react";
 import { fetchAllTopics } from "../api";
+import { Link } from 'react-router-dom';
 export const TopicsList=()=>{
     const [topics, setTopics] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -32,7 +33,7 @@ export const TopicsList=()=>{
           <ul >
             {topics.map((topic) => {
               return ( <>
-              <h4>{topic.slug}</h4>
+             <Link to= {`/articles?topic=${topic.slug}`} ><h4>{topic.slug}</h4></Link> 
               <p>{topic.description}</p>
               </> );
             })}

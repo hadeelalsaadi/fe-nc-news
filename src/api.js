@@ -2,9 +2,11 @@ import axios from 'axios'
 const api= axios.create({
     baseURL: 'https://build-api-ncnews.onrender.com/api'
 })
-export const fetchAllArticles =()=>{
-return api.get(`/articles`).then(({data})=>{
-   
+export const fetchAllArticles =(query)=>{
+    const queryObj = { topic: query };
+return api.get(`/articles`, {
+    params: queryObj,
+  }).then(({data})=>{
     return data.articles
 })
 }
