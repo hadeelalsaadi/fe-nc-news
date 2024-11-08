@@ -2,20 +2,22 @@ import axios from 'axios'
 const api= axios.create({
     baseURL: 'https://build-api-ncnews.onrender.com/api'
 })
+
 export const fetchAllArticles =(slug, sort_by,order)=>{
-    
-    const queryObj = { topic: slug ,
-        sort_by: sort_by,
-        order: order
-    };
+    const queryObj = { topic: slug , sort_by: sort_by, order: order};
 return api.get(`/articles`, {
     params: queryObj}).then(({data})=>{
     return data.articles
+}).catch((err)=>{
+    console.log(err)
+    return Promise.reject(err.response)
 })
 }
 export const  getArticleById=(article_id)=>{
     return api.get(`articles/${article_id}`).then(({data})=>{
         return data.article
+    }).catch((err)=>{
+        return Promise.reject(err.response)
     })
 }
 export const getComments= (article_id)=>{

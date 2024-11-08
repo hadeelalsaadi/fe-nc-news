@@ -17,22 +17,22 @@ export const SingleArticle= ()=>{
    
 useEffect(()=>{
     setIsLoading(true)
-    setIsError(false)
+    setIsError(null)
     getArticleById(article_id).then((article)=>{
         setArticle(article)
         setIsLoading(false)
-        setIsError(false)
+        setIsError(null)
         setVotes(article.votes)
         
         
     }).catch((err)=>{
-        setIsError(true)
+        setIsError(err)
     })
 
 },[article_id])
 
-if(isError){
-    return <p>404..Not found</p>
+if(isError!==null){
+    return <p>{isError.status} {isError.data.msg}  </p>
 }
 if (isLoading) {
     return <p>Loading...</p>;

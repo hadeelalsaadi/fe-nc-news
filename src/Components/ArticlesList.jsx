@@ -16,14 +16,13 @@ const topic = searchParams.get('topic');
 
 useEffect(()=>{
     setIsLoading(true)
-    setIsError(false)
-    console.log(searchParams)
+    setIsError(null)
     fetchAllArticles(topic,sortBy,order).then((articles)=>{
         setArticles(articles)
         setIsLoading(false)
        
     }).catch((err)=>{
-        setIsError(true)
+        setIsError(err)
     })
 },[searchParams, sortBy, order])
 
@@ -31,8 +30,8 @@ useEffect(()=>{
 function handleCahngeSortBy(event){ setSortby(event.target.value)}
 function handleCahngeOrder(event){ setOrder(event.target.value)}
 
-if(isError){
-    return <p>404..Not found</p>
+if(isError!==null){
+    return <p>{isError.status} {isError.data.msg}</p>
 }
 if (isLoading) {
     return <p>Loading...</p>;
@@ -50,7 +49,7 @@ if (isLoading) {
             </select>
 
            
-           <label htmlFor="sortting_order"> Sort order: </label>     
+           <label htmlFor="sortting_order"> in order: </label>     
              <select name="sortting_order" id="sortting_order" onChange={handleCahngeOrder}  value={order} >
                  <option value="desc" >Descending</option>
                  <option value="asc" >Ascending</option>
