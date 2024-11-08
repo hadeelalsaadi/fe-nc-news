@@ -8,40 +8,28 @@ const [articles,setArticles]= useState([])
 const [isLoading, setIsLoading]=useState(true)
 const [isError, setIsError]=useState(null)
 const [searchParams, setSearchParams] = useSearchParams();
+const [sortBy,setSortby]= useState('created_at')
+const [order,setOrder]= useState('desc')
 
-let topic = searchParams.get('topic');
-topic?useEffect(()=>{
-    setIsLoading(true)
-    setIsError(false)
-    fetchAllArticles(topic).then((articles)=>{
-        setArticles(articles)
-        setIsLoading(false)
-       
-    }).catch((err)=>{
-        setIsError(true)
-    })
-},[searchParams]):
+
+const topic = searchParams.get('topic');
 
 useEffect(()=>{
-   
     setIsLoading(true)
     setIsError(false)
-    fetchAllArticles().then((articles)=>{
+    console.log(searchParams)
+    fetchAllArticles(topic,sortBy,order).then((articles)=>{
         setArticles(articles)
         setIsLoading(false)
        
-
     }).catch((err)=>{
         setIsError(true)
     })
-},[]);
+},[searchParams, sortBy, order])
 
-function handleCahnge(event){
-    
-   console.log(event.target.value)
 
-}
-
+function handleCahngeSortBy(event){ setSortby(event.target.value)}
+function handleCahngeOrder(event){ setOrder(event.target.value)}
 
 if(isError){
     return <p>404..Not found</p>
@@ -53,14 +41,20 @@ if (isLoading) {
   return (
     <section >
         <h2>Recent news</h2>
-        <section>
-        <select name="sort" id="sort" onChange={handleCahnge} value= {searchParams} key="select">
-         <option >Sort by</option>
-            <option value="created_at" key="created_at">Date</option>
-            <option value="comment count" key="comment_count">Most commented</option>
-            <option value="votes">Likes</option>
+        <section> 
+           <label htmlFor="sort"> Sort by </label>     
+             <select name="sort" id="sort" onChange={handleCahngeSortBy} value= {sortBy} >
+                 <option value="created_at" >Date</option>
+                 <option value="title" >title</option>
+                 <option value="votes">likes</option>   
+            </select>
+
            
-        </select>
+           <label htmlFor="sortting_order"> Sort order: </label>     
+             <select name="sortting_order" id="sortting_order" onChange={handleCahngeOrder}  value={order} >
+                 <option value="desc" >Descending</option>
+                 <option value="asc" >Ascending</option>
+            </select>
 
         </section>
         <ul>
@@ -76,3 +70,4 @@ if (isLoading) {
   )
 
 }
+
